@@ -53,7 +53,7 @@ pub fn create_session_with_threads(
 /// Resolve a model file path for the requested quantization level.
 ///
 /// Looks for `{name}.{suffix}.onnx` based on the quantization variant,
-/// falling back to `{name}.onnx` (FP32) if the requested file doesn't exist.
+/// falling back to `{name}_quant.onnx` (for Int8) or `{name}.onnx` (FP32) if the requested file doesn't exist.
 pub fn resolve_model_path(dir: &Path, name: &str, quantization: &super::Quantization) -> std::path::PathBuf {
     let suffix = match quantization {
         super::Quantization::FP32 => None,
@@ -67,6 +67,16 @@ pub fn resolve_model_path(dir: &Path, name: &str, quantization: &super::Quantiza
             log::info!("Loading {} model: {}", suffix, path.display());
             return path;
         }
+
+        // For Int8, also check for model_quant.onnx (ModelScope naming convention)
+        if matches!(quantization, super::Quantization::Int8) {
+            let quant_path = dir.join(format!("{}_quant.onnx", name));
+            if quant_path.exists() {
+                log::info!("Loading int8 model: {}", quant_path.display());
+                return quant_path;
+            }
+        }
+
         log::warn!("{} model not found at {}, falling back to {}.onnx", suffix, path.display(), name);
     }
 

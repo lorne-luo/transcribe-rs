@@ -92,6 +92,10 @@ name = "sense_voice"
 required-features = ["onnx"]
 
 [[example]]
+name = "paraformer"
+required-features = ["onnx"]
+
+[[example]]
 name = "whisperfile"
 required-features = ["whisperfile"]
 
@@ -121,6 +125,10 @@ required-features = ["onnx"]
 
 [[test]]
 name = "sense_voice"
+required-features = ["onnx"]
+
+[[test]]
+name = "paraformer"
 required-features = ["onnx"]
 
 [[test]]

@@ -23,3 +23,4 @@ pub mod sense_voice;
 pub mod gigaam;
 pub mod parakeet;
 pub mod moonshine;
+pub mod paraformer;
