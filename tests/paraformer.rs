@@ -13,9 +13,7 @@ fn test_paraformer_transcribe() {
     let model_path = PathBuf::from("models/paraformer-large-zh");
     let wav_path = PathBuf::from("samples/test.wav");
 
-    if !common::require_paths(&[&model_path, &wav_path]) {
-        return;
-    }
+    common::require_paths_or_panic(&[&model_path, &wav_path]);
 
     let mut model =
         ParaformerModel::load(&model_path, &Quantization::Int8).expect("Failed to load model");

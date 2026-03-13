@@ -12,3 +12,13 @@ pub fn require_paths(paths: &[&Path]) -> bool {
     }
     true
 }
+
+/// Check that all required paths exist. Panics if any path is absent.
+#[allow(dead_code)]
+pub fn require_paths_or_panic(paths: &[&Path]) {
+    for path in paths {
+        if !path.exists() {
+            panic!("Required path not found: {:?}", path);
+        }
+    }
+}

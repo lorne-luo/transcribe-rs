@@ -24,3 +24,5 @@ pub mod gigaam;
 pub mod parakeet;
 pub mod moonshine;
 pub mod paraformer;
+pub mod fsmn_vad;
+pub mod ct_punc;
