@@ -408,7 +408,7 @@ mod tests {
         let features = ndarray::Array2::from_shape_fn((10, 80), |(i, j)| (i * 80 + j) as f32);
 
         // Apply LFR m=5, n=1 -> output should be [6, 400]
-        let result = Self::apply_lfr_online(&features.view(), 5, 1);
+        let result = FsmnVadModel::apply_lfr_online(&features.view(), 5, 1);
 
         assert_eq!(result.nrows(), 6); // 10 - 5 + 1 = 6
         assert_eq!(result.ncols(), 400); // 80 * 5

@@ -105,6 +105,7 @@ required-features = ["openai"]
 
 [dev-dependencies]
 once_cell = "1.21.3"
+dirs = "5.0"
 
 # Tests with required features
 [[test]]
@@ -138,3 +139,11 @@ required-features = ["whisperfile"]
 [[test]]
 name = "openai"
 required-features = ["openai"]
+
+[[test]]
+name = "fsmn_vad"
+required-features = ["onnx"]
+
+[[test]]
+name = "ct_punc"
+required-features = ["onnx"]
